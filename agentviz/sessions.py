@@ -20,15 +20,15 @@ def find_session(arg):
 
 @lru_cache(maxsize=None)
 def title_of(path, mtime):
-    """(ai-title, subagent count); cached per file version."""
-    title = ""
+    """(title, subagent count); cached per file version. A /rename (custom-title) beats the auto ai-title."""
+    titles = {}
     with open(path, errors="replace") as fh:
         for line in fh:
-            if '"ai-title"' in line:
+            if '-title"' in line:
                 d = json.loads(line)
-                title = d.get("aiTitle") or d.get("title") or title
+                titles[d.get("type")] = d.get("customTitle") or d.get("aiTitle") or d.get("title")
     p = Path(path)
-    return title, len(list((p.parent / p.stem / "subagents").glob("agent-*.jsonl")))
+    return titles.get("custom-title") or titles.get("ai-title") or "", len(list((p.parent / p.stem / "subagents").glob("agent-*.jsonl")))
 
 
 def sessions(n=None, offset=0, q=""):

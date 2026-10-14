@@ -85,7 +85,7 @@ def parse(main):
                        "parent": None, "spawn": meta.get("toolUseId")})
         sources.append((aid, f, meta))
 
-    events, tools, seen_msg, title = [], {}, set(), None
+    events, tools, seen_msg, titles = [], {}, set(), {}
     first_prompt = {}
     for aid, f, _ in sources:
         first_user = True
@@ -94,8 +94,8 @@ def parse(main):
                 d = json.loads(line)
             except ValueError:
                 continue
-            if d.get("type") == "ai-title" and aid == "main":
-                title = d.get("aiTitle") or d.get("title") or title
+            if d.get("type") in ("ai-title", "custom-title") and aid == "main":
+                titles[d["type"]] = d.get("customTitle") or d.get("aiTitle") or d.get("title")
             if d.get("type") not in ("user", "assistant") or d.get("isMeta"):
                 continue
             if aid == "main" and d.get("isSidechain"):
@@ -170,6 +170,7 @@ def parse(main):
         ts_ = [e["t"] for e in events if e["a"] == a["id"]]
         a["t0"], a["t1"] = (min(ts_), max(ts_)) if ts_ else (None, None)
     agents = [a for a in agents if a["t0"] is not None]
+    title = titles.get("custom-title") or titles.get("ai-title")  # a /rename beats the auto title
     return {"id": main.stem, "title": title or main.parent.name, "agents": agents, "events": events}
 
 
