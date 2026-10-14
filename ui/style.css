@@ -1,0 +1,71 @@
+:root{--bg:#04060a;--panel:#080c13;--line:#18202d;--dim:#5b6678;--fg:#c3cedd;--hi:#fff;--amber:#fbbf24;--red:#f43f5e;--green:#34d399}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--fg);font:11px/1.45 "JetBrains Mono","SF Mono",Menlo,monospace;overflow:hidden}
+#app{display:grid;grid-template-rows:auto 1fr 104px;grid-template-columns:1fr 340px;height:100vh;gap:8px;padding:10px 12px}
+header{grid-column:1/3}
+.top{display:flex;gap:18px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:8px;white-space:nowrap;overflow:hidden}
+.top b{color:var(--hi);font-weight:800;letter-spacing:.06em;border-left:3px solid var(--hi);padding-left:8px;overflow:hidden;text-overflow:ellipsis}
+.top .m{color:var(--dim)}
+.top .r{margin-left:auto;color:var(--amber)}
+.tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.tile{border:1px solid var(--line);background:var(--panel);padding:7px 10px;position:relative;min-width:0}
+.tile label{display:block;color:var(--dim);font-size:9px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.tile .big{font-size:26px;font-weight:800;color:var(--hi);letter-spacing:.02em;line-height:1.15}
+.tile .big small{font-size:12px;color:var(--dim);font-weight:400;margin-left:3px}
+.tile.err .big{color:var(--red)}
+.tile .bar{height:3px;background:#111824;margin-top:4px}
+.tile .bar i{display:block;height:100%;background:var(--amber);width:0;transition:width .2s}
+.tile canvas{position:absolute;right:8px;top:10px;width:46%;height:34px}
+#stage{position:relative;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 40%,#0a1120 0%,#04060a 75%);min-height:0}
+#c{position:absolute;inset:0;width:100%;height:100%;display:block}
+aside{grid-row:2/4;grid-column:2;display:flex;flex-direction:column;gap:8px;min-height:0}
+.card{border:1px solid var(--line);background:var(--panel);padding:8px 10px;min-height:0}
+.card h3{font-size:9px;letter-spacing:.14em;color:var(--dim);font-weight:600;display:flex;justify-content:space-between;margin-bottom:6px}
+#now{border-color:#3a2d0c;box-shadow:0 0 24px rgba(251,191,36,.08) inset}
+#nowTool{font-size:18px;font-weight:800;color:var(--hi)}
+#nowAgent{color:var(--amber);margin:2px 0 6px}
+#nowText{color:var(--fg);max-height:6.2em;overflow:hidden;word-break:break-word}
+#nowOut{color:var(--dim);margin-top:6px;max-height:4.4em;overflow:hidden;word-break:break-word;border-left:2px solid var(--line);padding-left:6px}
+#nowStatus.run{color:var(--amber)}#nowStatus.ok{color:var(--green)}#nowStatus.err{color:var(--red)}
+#mix div{display:grid;grid-template-columns:86px 1fr 34px;gap:6px;align-items:center;margin:2px 0}
+#mix span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#mix b{display:block;height:6px;transition:width .2s}
+#mix em{font-style:normal;color:var(--dim);text-align:right}
+#logCard{flex:1;display:flex;flex-direction:column}
+#log{list-style:none;overflow:hidden;flex:1;display:flex;flex-direction:column;justify-content:flex-end}
+#log li{flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:1px 0;color:var(--fg)}
+#log li .t{color:var(--dim);margin-right:6px}
+#log li.sys{color:#475263}
+#log li.err{color:var(--red)}
+footer{grid-column:1;display:flex;flex-direction:column;gap:6px;min-width:0}
+.ctrl{display:flex;gap:6px;align-items:center}
+.ctrl button{background:var(--panel);border:1px solid var(--line);color:var(--fg);font:inherit;padding:3px 9px;cursor:pointer}
+.ctrl button:hover{border-color:#334}
+.ctrl button.on{border-color:var(--amber);color:var(--amber)}
+.ctrl .m{color:var(--dim);margin-left:auto}
+#pick{position:fixed;inset:0;z-index:10;display:grid;place-items:center;background:rgba(4,6,10,.6);backdrop-filter:blur(12px) saturate(1.2);-webkit-backdrop-filter:blur(12px) saturate(1.2);animation:fade .35s ease}
+#pick[hidden]{display:none}
+@keyframes fade{from{opacity:0}}
+#pick .box{width:min(860px,calc(100vw - 32px));max-height:80vh;display:flex;flex-direction:column;background:rgba(8,12,19,.97);border:1px solid #3a2d0c;box-shadow:0 0 60px rgba(251,191,36,.12),0 30px 80px rgba(0,0,0,.6);padding:14px 16px;animation:rise .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes rise{from{transform:translateY(14px) scale(.98);opacity:0}}
+#pick h2{font-size:12px;letter-spacing:.16em;color:var(--hi);border-left:3px solid var(--amber);padding-left:8px;margin-bottom:10px;display:flex;justify-content:space-between}
+#pick h2 span{color:var(--dim);font-weight:400}
+#q{background:#05080d;border:1px solid var(--line);color:var(--hi);font:inherit;font-size:13px;padding:8px 10px;outline:none;margin-bottom:8px}
+#q:focus{border-color:var(--amber)}
+#sess{list-style:none;overflow:auto;flex:1}
+#sess li{display:grid;grid-template-columns:86px 200px 1fr 120px;gap:12px;padding:6px 8px;cursor:pointer;border-left:2px solid transparent;white-space:nowrap}
+#sess li span{overflow:hidden;text-overflow:ellipsis}
+#sess li .d,#sess li .k{color:var(--dim)}#sess li .k{text-align:right}
+#sess li .p{color:#60a5fa}
+#sess li.sel{background:rgba(251,191,36,.07);border-left-color:var(--amber)}
+#sess li.sel .t{color:var(--hi)}
+#sess li.cur .k{color:var(--green)}
+#paste{display:flex;gap:8px;margin-top:8px;border-top:1px solid var(--line);padding-top:8px}
+#pasteTxt{flex:1;height:44px;resize:vertical;background:#05080d;border:1px dashed #2a3445;color:var(--fg);font:inherit;font-size:10px;padding:6px 8px;outline:none}
+#pasteTxt:focus,#pick.drop #pasteTxt{border-color:var(--amber);border-style:solid}
+#pasteGo{background:none;border:1px solid var(--amber);color:var(--amber);font:inherit;padding:0 14px;cursor:pointer;letter-spacing:.1em}
+#pasteErr{color:var(--red);font-size:10px;margin-top:4px}
+#pick .hint{color:var(--dim);font-size:9px;letter-spacing:.12em;margin-top:8px}
+#bPick{background:none;border:1px solid var(--line);color:var(--amber);font:inherit;padding:1px 8px;cursor:pointer}
+#tl{flex:1;width:100%;border:1px solid var(--line);background:var(--panel);cursor:pointer;display:block;min-height:0}
+@media (max-width:900px){#app{grid-template-columns:1fr;grid-template-rows:auto 60vh 104px auto;overflow:auto;height:auto}html,body{overflow:auto}aside{grid-row:auto;grid-column:1}.tiles{grid-template-columns:repeat(3,1fr)}}

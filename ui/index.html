@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent Run</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="top"><b>AGENT RUN / <span id="title"></span></b><span class="m" id="meta"></span><span class="r" id="clock"></span><button id="bPick" title="Sessions (O)" hidden>⏏ SESSIONS</button></div>
+    <div class="tiles">
+      <div class="tile"><label>Tool calls</label><div class="big" id="sTools">0</div><div class="bar"><i id="bTools"></i></div></div>
+      <div class="tile"><label>Tokens out</label><div class="big" id="sOut">0</div><canvas id="spark"></canvas></div>
+      <div class="tile"><label>Context · live</label><div class="big" id="sCtx">0</div></div>
+      <div class="tile"><label>Agents</label><div class="big" id="sAg">0</div></div>
+      <div class="tile" id="tErr"><label>Errors</label><div class="big" id="sErr">0</div></div>
+      <div class="tile"><label>Wall time</label><div class="big" id="sWall">0:00</div><div class="bar"><i id="bWall"></i></div></div>
+    </div>
+  </header>
+  <div id="stage"><canvas id="c"></canvas></div>
+  <aside>
+    <div class="card" id="now"><h3><span>CURRENT</span><span id="nowStatus"></span></h3>
+      <div id="nowTool">—</div><div id="nowAgent"></div><div id="nowText"></div><div id="nowOut"></div></div>
+    <div class="card"><h3><span>TOOL MIX</span><span>calls</span></h3><div id="mix"></div></div>
+    <div class="card" id="logCard"><h3><span>RUN LOG</span><span id="logN"></span></h3><ul id="log"></ul></div>
+  </aside>
+  <footer>
+    <div class="ctrl">
+      <button id="bRestart" title="Restart (R)">⏮</button>
+      <button id="bPlay" title="Play/pause (space)">❚❚</button>
+      <span id="speeds"></span>
+      <span class="m" id="pos"></span>
+    </div>
+    <canvas id="tl"></canvas>
+  </footer>
+</div>
+<div id="pick" hidden><div class="box">
+  <h2>SELECT SESSION<span id="pickN"></span></h2>
+  <input id="q" placeholder="search title / project / id…" autocomplete="off">
+  <ul id="sess"></ul>
+  <div id="paste"><textarea id="pasteTxt" placeholder="…or paste a transcript (JSONL / JSON array) here, or drop a .jsonl file anywhere" spellcheck="false"></textarea><button id="pasteGo">▶ PLAY</button></div>
+  <div id="pasteErr"></div>
+  <div class="hint">↑ ↓ NAVIGATE · ENTER PLAY · ⌘ENTER PLAY PASTED · ESC CLOSE</div>
+</div></div>
+<script src="app.js"></script>
+<script src="picker.js"></script>
+</body>
+</html>
