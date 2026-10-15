@@ -1,6 +1,6 @@
-"""usage: python3 -m agentviz                  # local web UI with a session picker
-       python3 -m agentviz --list           # list recent sessions
-       python3 -m agentviz <id-prefix|path> # build a standalone out/<id>.html and open it
+"""usage: python3 -m claudeviz                  # local web UI with a session picker
+       python3 -m claudeviz --list           # list recent sessions
+       python3 -m claudeviz <id-prefix|path> # build a standalone out/<id>.html and open it
 """
 import sys, webbrowser
 from pathlib import Path

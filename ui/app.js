@@ -277,7 +277,7 @@ function drawTl() {
 
 // ---------- DOM panels ----------
 $('#title').textContent = DATA.title;
-document.title = 'Agent Run · ' + short(DATA.title, 40);
+document.title = 'Claude Session · ' + short(DATA.title, 40);
 $('#meta').textContent = DATA.id.slice(0, 8) + ' · ' + new Date(T0 * 1000).toLocaleString() + ' · ' + EV.length + ' events' + (DATA.synthetic ? ' · timing synthetic' : '');
 const mixEl = $('#mix'), mixRows = COLS[2].map(n => { const d = document.createElement('div'), s = document.createElement('span'), b = document.createElement('b'), m = document.createElement('em'); s.textContent = n.label; b.style.background = n.color; d.append(s, b, m); mixEl.append(d); return { n, b, m }; });
 const totalTools = acts.filter(e => e.k === 'tool').length;

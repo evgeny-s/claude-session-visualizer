@@ -1,11 +1,11 @@
-"""Self-check. Run: python3 tests/test_agentviz.py  (or pytest)"""
+"""Self-check. Run: python3 tests/test_claudeviz.py  (or pytest)"""
 import json, sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from agentviz.render import render
-from agentviz.sessions import find_session, sessions
-from agentviz.transcript import parse, parse_text
+from claudeviz.render import render
+from claudeviz.sessions import find_session, sessions
+from claudeviz.transcript import parse, parse_text
 
 DEMO = Path(__file__).resolve().parent.parent / "examples" / "demo.jsonl"
 

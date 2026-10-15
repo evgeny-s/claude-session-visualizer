@@ -10,16 +10,16 @@
 
 ```bash
 git clone git@github.com:evgeny-s/claude-session-visualizer.git && cd claude-session-visualizer
-python3 -m agentviz
+python3 -m claudeviz
 ```
 
 This opens a local page with a session picker over your own `~/.claude/projects`. Pick a session and it starts playing. Python 3.9+, no dependencies. If you have no sessions yet, the page plays the demo.
 
 ```bash
-python3 -m agentviz                       # web UI with session picker (127.0.0.1 only)
-python3 -m agentviz --list                # recent sessions in the terminal
-python3 -m agentviz <id-prefix>           # standalone out/<id>.html, opens in the browser
-python3 -m agentviz examples/demo.jsonl   # any exported / Agent SDK transcript file
+python3 -m claudeviz                       # web UI with session picker (127.0.0.1 only)
+python3 -m claudeviz --list                # recent sessions in the terminal
+python3 -m claudeviz <id-prefix>           # standalone out/<id>.html, opens in the browser
+python3 -m claudeviz examples/demo.jsonl   # any exported / Agent SDK transcript file
 ```
 
 ## What you see
@@ -44,7 +44,7 @@ Everything stays local. The server binds `127.0.0.1` and reads only `~/.claude/p
 ## Layout
 
 ```
-agentviz/        Python backend (stdlib only)
+claudeviz/        Python backend (stdlib only)
   transcript.py  session / SDK transcript -> timeline events
   sessions.py    discover and search sessions in ~/.claude/projects
   render.py      inline ui/ + data into one self-contained HTML page
@@ -52,5 +52,5 @@ agentviz/        Python backend (stdlib only)
   __main__.py    CLI
 ui/              index.html, style.css, app.js (canvas player), picker.js (session modal)
 examples/        demo transcript
-tests/           python3 tests/test_agentviz.py
+tests/           python3 tests/test_claudeviz.py
 ```

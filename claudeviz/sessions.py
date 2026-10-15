@@ -52,4 +52,4 @@ def list_sessions(n=20):
     for x in sessions(n)[1]:
         when = datetime.fromtimestamp(x["mtime"]).strftime("%m-%d %H:%M")
         print(f"{x['id'][:8]}  {when}  {x['project'][:34]:34}  {clip(x['title'], 60)}")
-    print("\nrun: python3 -m agentviz <id-prefix>")
+    print("\nrun: python3 -m claudeviz <id-prefix>")
