@@ -54,3 +54,7 @@ ui/              index.html, style.css, app.js (canvas player), picker.js (sessi
 examples/        demo transcript
 tests/           python3 tests/test_claudeviz.py
 ```
+
+## License
+
+MIT, see [LICENSE](LICENSE).
