@@ -1,15 +1,15 @@
-# ai-viz
+# claude-session-visualizer
 
 **Replay a Claude Code agent session as an animated mission-control view.** Prompts flow into agents, agents into tools, tools into the files and commands they touch. Subagents get their own lanes, errors flash red, and you can scrub through the whole run on a timeline.
 
-![ai-viz replaying a multi-agent session](docs/screenshot.png)
+![claude-session-visualizer replaying a multi-agent session](docs/screenshot.png)
 
 <sub>Demo data: a made-up session from [`examples/demo.jsonl`](examples/demo.jsonl).</sub>
 
 ## Quick start
 
 ```bash
-git clone git@github.com:evgeny-s/ai-viz.git && cd ai-viz
+git clone git@github.com:evgeny-s/claude-session-visualizer.git && cd claude-session-visualizer
 python3 -m agentviz
 ```
 
